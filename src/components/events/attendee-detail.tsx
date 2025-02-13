@@ -52,6 +52,7 @@ const AttendeeDetails = () => {
         fullName: values.fullName,
         image: secure_url,
         currentStep: value.currentStep < 3 ? value.currentStep + 1 : 3,
+        specialRequest: values.specialRequest,
       });
     } catch (error) {
       console.log(error);
@@ -140,7 +141,10 @@ const AttendeeDetails = () => {
         >
           <Form.Item<FormFieldType>
             name='fullName'
-            rules={[{ required: true, message: 'Field cannot be empty' }]}
+            rules={[
+              { required: true, message: 'Field cannot be empty' },
+              { min: 8, message: 'Min of 8 characters required' },
+            ]}
             label={<p className='label'>Enter your fullname *</p>}
           >
             <Input

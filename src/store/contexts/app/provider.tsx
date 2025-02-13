@@ -45,14 +45,24 @@ const AppProvider: React.FC<{
 
   useEffect(() => {
     if (value) {
-      if (tickets) {
-        setTickets([...tickets, value]);
+      if (
+        tickets &&
+        value.fullName !== '' &&
+        value.email !== '' &&
+        value.image !== ''
+      ) {
+        const newTickets = tickets.some(
+          (item) => item.fullName === value.fullName
+        );
+        if (!newTickets) {
+          setTickets([...tickets, value]);
+        }
       }
       setData(value);
       setCurrentStep(value.currentStep);
     } else {
       setTickets([]);
-      const data = {
+      const data: UserDataType = {
         fullName: '',
         email: '',
         image: '',
