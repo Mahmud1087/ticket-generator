@@ -3,6 +3,7 @@ import { ABOUT_PAGE, EVENTS_PAGE, TICKET_PAGE } from '../../config/routes';
 import Logo from '../common/logo';
 import { ArrowRightIcon } from '../icons';
 import { Button } from 'antd';
+import useNavigation from '../../hooks/use-navigate';
 
 const navList = [
   {
@@ -21,6 +22,7 @@ const navList = [
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const { navigate } = useNavigation();
 
   return (
     <div className='w-[inherit] [backdrop-filter:blur(4px)] rounded-3xl bg-gray-200/[0.4] border-teal border flex items-center justify-between py-3 px-4 text-lg text-darkgray fixed top-10 z-50'>
@@ -44,6 +46,9 @@ const Navbar = () => {
         type='default'
         size='large'
         className='flex gap-2 items-center justify-start text-base text-gray-100'
+        onClick={() => {
+          navigate(TICKET_PAGE);
+        }}
       >
         <p className='uppercase font-jeju'>My Tickets</p>
         <ArrowRightIcon className='text-base' />
