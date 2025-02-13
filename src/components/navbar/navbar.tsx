@@ -34,8 +34,10 @@ const Navbar = () => {
               key={i}
               to={nav.href}
               className={`${
-                nav.href === pathname ? 'text-white' : 'text-darkgray'
-              }`}
+                nav.href === pathname
+                  ? 'text-white'
+                  : 'text-darkgray hover:text-white'
+              } transition-all`}
             >
               {nav.label}
             </Link>

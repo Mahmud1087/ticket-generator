@@ -75,9 +75,13 @@ const AboutPage = () => {
         >
           Github Code
         </a>
-        <button className='block bg-transparent border border-primary-btn w-full py-3 px-6 rounded-lg text-primary-btn text-base font-jeju hover:bg-primary-btn/50'>
+        <a
+          href='https://www.figma.com/design/aQ5PkSZfM4VIUcvT6pbWLV/Event-Ticket-Booking-UI-%E2%80%93-Open-Source-Practice-Project-%F0%9F%8E%9F%EF%B8%8F-(Community)-(Copy)'
+          target='_blank'
+          className='block bg-transparent border border-primary-btn w-full py-3 px-6 rounded-lg text-primary-btn text-base font-jeju hover:bg-primary-btn/50 text-center'
+        >
           Design File
-        </button>
+        </a>
       </div>
     </div>
   );
