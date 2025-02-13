@@ -22,7 +22,7 @@ const Ticket = () => {
             <h1 className='text-[2rem] font-road-rage md:text-5xl'>
               Techember Fest ”25
             </h1>
-            <div className='flex font-roboto flex-col max-w-[21.25rem] mx-auto md:flex-row'>
+            <div className='mt-2.5 flex font-roboto flex-col max-w-[21.25rem] mx-auto text-center items-center justify-center'>
               <p className='text-sm flex flex-col md:flex-row'>
                 <span>📍 Lagos, Nigeria </span>
                 <span className='hidden mx-1.5 md:block'>||</span>
@@ -30,7 +30,7 @@ const Ticket = () => {
               <p className='text-sm'>📆 March 15, 2025 | 7:00 PM</p>
             </div>
           </section>
-          <aside className='mt-5 w-full h-32'>
+          <aside className='mt-5 w-full h-32 md:h-44'>
             <img
               src={value.image}
               alt='User profile image'
