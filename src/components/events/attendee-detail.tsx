@@ -147,14 +147,7 @@ const AttendeeDetails = () => {
             ]}
             label={<p className='label'>Enter your fullname *</p>}
           >
-            <Input
-              variant='borderless'
-              size='large'
-              style={{
-                border: '1px solid #07373f',
-                borderRadius: '12px',
-              }}
-            />
+            <Input size='large' />
           </Form.Item>
           <Form.Item<FormFieldType>
             name='email'
@@ -168,13 +161,8 @@ const AttendeeDetails = () => {
             label={<p className='label'>Enter your email *</p>}
           >
             <Input
-              prefix={<MailOutlined className='text-white mr-2.5' />}
-              variant='borderless'
+              prefix={<MailOutlined className='mr-2.5 border-none' />}
               size='large'
-              style={{
-                border: '1px solid #07373f',
-                borderRadius: '12px',
-              }}
             />
           </Form.Item>
 
@@ -187,13 +175,11 @@ const AttendeeDetails = () => {
                 resize: 'none',
               }}
               rows={5}
-              className='bg-transparent border border-[#07373F] rounded-xl text-white'
-              variant='borderless'
+              className='bg-transparent border border-[#07373F] rounded-xl'
             />
           </Form.Item>
         </Form>
 
-        {/* <Form.Item label={null}> */}
         <div className='flex flex-col gap-4 mt-2.5 md:flex-row-reverse'>
           <button
             disabled={loading || !fullName || !email || !fileName}
