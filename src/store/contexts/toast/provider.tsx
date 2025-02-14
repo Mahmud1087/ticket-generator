@@ -30,7 +30,7 @@ const ToastProvider: React.FC<{
     ({ duration, message, type = 'info' }: ToastContextHandlerType) => {
       api[type]({
         content: message,
-        duration: duration ?? type === 'loading' ? 0 : undefined,
+        duration,
         type,
       });
     },

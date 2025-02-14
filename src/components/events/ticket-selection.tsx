@@ -103,9 +103,9 @@ const TicketSelection = () => {
                 return (
                   <aside
                     key={i}
-                    className={`border-2 border-[#197686] rounded-xl p-3 flex flex-col gap-3 ${
+                    className={`border-[#197686] rounded-xl p-3 flex flex-col gap-3 transition-all border-2 ${
                       selectedTicket !== ticket.value
-                        ? 'bg-transparent'
+                        ? 'bg-transparent hover:bg-[#2C545B]'
                         : 'bg-[#12464E]'
                     }`}
                     onClick={() =>

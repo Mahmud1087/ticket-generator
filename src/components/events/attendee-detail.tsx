@@ -94,7 +94,7 @@ const AttendeeDetails = () => {
         <section className='py-4 px-6 rounded-3xl border border-[#07373F] relative'>
           <p className='label'>Upload Profile Photo</p>
           <div className='mt-3 relative max-w-60 h-60 mx-auto'>
-            <div className='relative w-full h-full border-4 border-primary-btn/50 bg-darkslategray-100 text-light-gray rounded-4xl flex flex-col gap-4 items-center justify-center group transition-all'>
+            <div className='relative w-full h-full border-4 border-primary-btn/50 bg-darkslategray-100 text-light-gray rounded-4xl flex flex-col gap-4 items-center justify-center group transition-all z-30'>
               <Upload.Dragger
                 accept='.jpg, .png, .jpeg'
                 beforeUpload={(file) => {
@@ -203,6 +203,7 @@ const AttendeeDetails = () => {
             className='block bg-transparent border border-primary-btn w-full py-3 px-6 rounded-lg text-primary-btn text-base font-jeju hover:bg-primary-btn/50'
             onClick={() => {
               setCurrentStep(1);
+              setValue({ ...value, currentStep: value.currentStep - 1 });
             }}
           >
             Back

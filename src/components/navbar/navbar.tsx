@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ABOUT_PAGE, EVENTS_PAGE, TICKET_PAGE } from '../../config/routes';
 import Logo from '../common/logo';
 import { ArrowRightIcon } from '../icons';
-import { Button, Dropdown, MenuProps } from 'antd';
+import { Dropdown, MenuProps } from 'antd';
 import useNavigation from '../../hooks/use-navigate';
 
 const navList = [
@@ -44,7 +44,11 @@ const Navbar = () => {
       <div className='hidden md:block'>
         <Logo />
       </div>
-      <Dropdown menu={{ items }} trigger={['click']} className='md:hidden'>
+      <Dropdown
+        menu={{ items }}
+        trigger={['click']}
+        className='md:hidden cursor-pointer'
+      >
         <a onClick={(e) => e.preventDefault()}>
           <Logo />
         </a>
@@ -66,17 +70,17 @@ const Navbar = () => {
           );
         })}
       </div>
-      <Button
-        type='default'
-        size='large'
-        className='flex gap-2 items-center justify-start text-base text-gray-100'
+      <button
+        className='bg-white py-3 px-4 flex gap-2 items-center justify-start text-base text-gray-100 rounded-xl group border border-[#d9d9d9] transition-all hover:text-[#d9d9d9] hover:bg-[#24A0B5] md:py-4 md:px-6'
         onClick={() => {
           navigate(TICKET_PAGE);
         }}
       >
         <p className='uppercase font-jeju'>My Tickets</p>
-        <ArrowRightIcon className='text-base' />
-      </Button>
+        <div className='group-hover:-rotate-45'>
+          <ArrowRightIcon className='text-base md:text-xl' />
+        </div>
+      </button>
     </div>
   );
 };
