@@ -3,7 +3,7 @@ import { useState } from 'react';
 import TicketHeader from '../common/ticket-header';
 import { RequiredMark } from './ticket-selection';
 import CustomizeRequiredMark from '../common/required-mark';
-import { useAppContext } from '../../store';
+import { useAppContext, useToastContext } from '../../store';
 import { MailOutlined } from '@ant-design/icons';
 import { CLOUD_DOWNLOAD_IMG } from '../../config/static';
 import useLocalStorage from '../../hooks/use-local-storage';
@@ -23,6 +23,7 @@ const AttendeeDetails = () => {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const { setCurrentStep, setUploadedImageUrl } = useAppContext();
+  const { open } = useToastContext();
   const { value, setValue } = useLocalStorage('userData', { type: 'object' });
 
   const handleFileUpload = async (values: FormFieldType) => {
@@ -53,6 +54,11 @@ const AttendeeDetails = () => {
         image: secure_url,
         currentStep: value.currentStep < 3 ? value.currentStep + 1 : 3,
         specialRequest: values.specialRequest,
+      });
+      open({
+        duration: 5,
+        message: 'Ticket Registered Successfully',
+        type: 'success',
       });
     } catch (error) {
       console.log(error);
@@ -88,17 +94,21 @@ const AttendeeDetails = () => {
         <section className='py-4 px-6 rounded-3xl border border-[#07373F] relative'>
           <p className='label'>Upload Profile Photo</p>
           <div className='mt-3 relative max-w-60 h-60 mx-auto'>
-            <Upload.Dragger
-              accept='.jpg, .png, .jpeg'
-              beforeUpload={(file) => {
-                handleFileChange(file);
-                return false;
-              }}
-              className='mt-1.5 absolute z-40 w-full opacity-0 h-full'
-              showUploadList={false}
-            />
-            <div className='relative z-20 w-full h-full border-4 border-primary-btn/50 bg-darkslategray-100 text-light-gray rounded-4xl flex flex-col gap-4 items-center justify-center'>
-              <aside className='p-6 absolute flex flex-col justify-center items-center'>
+            <div className='relative w-full h-full border-4 border-primary-btn/50 bg-darkslategray-100 text-light-gray rounded-4xl flex flex-col gap-4 items-center justify-center group transition-all'>
+              <Upload.Dragger
+                accept='.jpg, .png, .jpeg'
+                beforeUpload={(file) => {
+                  handleFileChange(file);
+                  return false;
+                }}
+                className='mt-1.5 absolute w-full opacity-0 h-full z-30'
+                showUploadList={false}
+              />
+              <aside
+                className={
+                  'p-6 absolute flex flex-col justify-center items-center h-full w-full  group-hover:z-20'
+                }
+              >
                 <div className='h-8 w-8'>
                   <img
                     src={CLOUD_DOWNLOAD_IMG}
@@ -111,7 +121,7 @@ const AttendeeDetails = () => {
                 </p>
               </aside>
               {imagePreview && (
-                <div className='w-full h-full'>
+                <div className='absolute z-10 w-full h-full'>
                   <img
                     src={imagePreview}
                     alt='Uploaded Image'

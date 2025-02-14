@@ -11,21 +11,27 @@ export type UserDataType = {
   currentStep: number;
 };
 
-// type TicketInforType = {
-//   ticketType:string
-//   noOfTickets:number
-// }
-
 export type AppContextType = {
   data: UserDataType | null;
   currentStep: number;
   totalSteps: number;
   uploadedImageUrl: string | null;
+  setData: React.Dispatch<React.SetStateAction<UserDataType | null>>;
   setUploadedImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const AppContext = React.createContext<AppContextType | null>(null);
+
+export const initialValues = {
+  fullName: '',
+  email: '',
+  image: '',
+  noOfTickets: 0,
+  ticketType: '',
+  specialRequest: '',
+  currentStep: 1,
+};
 
 const AppProvider: React.FC<{
   children: React.ReactNode;
@@ -83,6 +89,7 @@ const AppProvider: React.FC<{
         currentStep,
         totalSteps,
         uploadedImageUrl,
+        setData,
         setUploadedImageUrl,
         setCurrentStep,
       }}

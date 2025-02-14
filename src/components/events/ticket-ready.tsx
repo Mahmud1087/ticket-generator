@@ -4,19 +4,16 @@ import useLocalStorage from '../../hooks/use-local-storage';
 import TicketHeader from '../common/ticket-header';
 import { Flex } from 'antd';
 import Ticket from '../common/ticket';
-import { UserDataType } from '../../store/contexts/app/provider';
-import { EVENTS_PAGE } from '../../config/routes';
-import useNavigation from '../../hooks/use-navigate';
+import { initialValues, UserDataType } from '../../store/contexts/app/provider';
 import { useAppContext } from '../../store';
 
 const TicketReady = () => {
-  const { value } = useLocalStorage<UserDataType>('userData', {
+  const { value, setValue } = useLocalStorage<UserDataType>('userData', {
     type: 'object',
   });
   const { value: tickets, setValue: setTickets } = useLocalStorage<
     UserDataType[]
   >('myTickets', { type: 'array' });
-  const { navigate } = useNavigation();
   const { setCurrentStep } = useAppContext();
 
   useEffect(() => {
@@ -68,7 +65,7 @@ const TicketReady = () => {
         <button
           className='block bg-transparent border border-primary-btn w-full py-3 px-6 rounded-lg text-primary-btn text-base font-jeju hover:bg-primary-btn/50'
           onClick={() => {
-            navigate(EVENTS_PAGE);
+            setValue(initialValues);
             setCurrentStep(1);
           }}
         >
