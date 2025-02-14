@@ -1,9 +1,12 @@
+import { Button } from 'antd';
 import Ticket from '../components/common/ticket';
 import useLocalStorage from '../hooks/use-local-storage';
 import { UserDataType } from '../store/contexts/app/provider';
 
 const MyTicketsPage = () => {
-  const { value: tickets } = useLocalStorage<UserDataType[]>('myTickets', {
+  const { value: tickets, setValue: setTickets } = useLocalStorage<
+    UserDataType[]
+  >('myTickets', {
     type: 'array',
   });
 
@@ -14,21 +17,26 @@ const MyTicketsPage = () => {
           <p>No Ticket Registered yet</p>
         </div>
       ) : (
-        <div className='grid gap-6'>
-          {tickets?.map((ticket, i) => {
-            return (
-              <Ticket
-                key={i}
-                email={ticket?.email}
-                fullName={ticket?.fullName}
-                image={ticket?.image}
-                noOfTickets={ticket?.noOfTickets}
-                ticketType={ticket?.ticketType}
-                specialRequest={ticket?.specialRequest}
-              />
-            );
-          })}
-        </div>
+        <>
+          <div className='grid gap-6'>
+            {tickets?.map((ticket, i) => {
+              return (
+                <Ticket
+                  key={i}
+                  email={ticket?.email}
+                  fullName={ticket?.fullName}
+                  image={ticket?.image}
+                  noOfTickets={ticket?.noOfTickets}
+                  ticketType={ticket?.ticketType}
+                  specialRequest={ticket?.specialRequest}
+                />
+              );
+            })}
+          </div>
+          <Button size='large' onClick={() => setTickets([])}>
+            Clear Tickets
+          </Button>
+        </>
       )}
     </div>
   );
